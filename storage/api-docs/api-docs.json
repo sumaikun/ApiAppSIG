@@ -1,0 +1,553 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        },
+        {
+            "url": "http://swagger.local"
+        }
+    ],
+    "paths": {
+        "/api/activity": {
+            "post": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Registrar actividad",
+                "operationId": "App\\Http\\Controllers\\Api\\ActivitiesController::create",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "fecha": {
+                                        "description": "Fecha de la actividad",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2017-01-01"
+                                    },
+                                    "actividad": {
+                                        "description": "Tipo de actividad (id del tipo de actividad) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "cliente": {
+                                        "description": "Empresa o organización del cliente (id de la empresa del cliente) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "empresa": {
+                                        "description": "Empresa o organización que atiende al cliente (id de la empresa propia) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "filial": {
+                                        "description": "Entidad filial",
+                                        "type": "string",
+                                        "example": "Bogotá"
+                                    },
+                                    "subcontratista": {
+                                        "description": "Subcontratista de la activididad",
+                                        "type": "string",
+                                        "example": "Gas natural"
+                                    },
+                                    "descripcion": {
+                                        "description": "Descripción de la activididad",
+                                        "type": "string",
+                                        "example": "Ejemplo de descripción"
+                                    },
+                                    "hora_inicial": {
+                                        "description": "Hora inicial de la activididad",
+                                        "type": "string",
+                                        "example": "08:50"
+                                    },
+                                    "hora_final": {
+                                        "description": "Hora final de la activididad",
+                                        "type": "string",
+                                        "example": "13:40"
+                                    },
+                                    "usuario": {
+                                        "description": "id del usuario a registrar la actividad",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actividad registrada."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/activity/{id}": {
+            "get": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Obtener actividad",
+                "operationId": "App\\Http\\Controllers\\Api\\ActivitiesController::getByid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la actividad a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actividad encontrada."
+                    },
+                    "204": {
+                        "description": "No hay resultados que mostrar."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Editar actividad",
+                "operationId": "App\\Http\\Controllers\\Api\\ActivitiesController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la actividad a editar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "fecha"
+                                ],
+                                "properties": {
+                                    "fecha": {
+                                        "description": "Fecha de la actividad",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2017-01-01"
+                                    },
+                                    "actividad": {
+                                        "description": "Tipo de actividad (id del tipo de actividad) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "cliente": {
+                                        "description": "Empresa o organización del cliente (id de la empresa del cliente) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "empresa": {
+                                        "description": "Empresa o organización que atiende al cliente (id de la empresa propia) ",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    },
+                                    "filial": {
+                                        "description": "Entidad filial",
+                                        "type": "string",
+                                        "example": "Bogotá"
+                                    },
+                                    "subcontratista": {
+                                        "description": "Subcontratista de la activididad",
+                                        "type": "string",
+                                        "example": "Gas natural"
+                                    },
+                                    "descripcion": {
+                                        "description": "Descripción de la activididad",
+                                        "type": "string",
+                                        "example": "Ejemplo de descripción"
+                                    },
+                                    "hora_inicial": {
+                                        "description": "Hora inicial de la activididad",
+                                        "type": "string",
+                                        "example": "08:50"
+                                    },
+                                    "hora_final": {
+                                        "description": "Hora final de la activididad",
+                                        "type": "string",
+                                        "example": "13:40"
+                                    },
+                                    "usuario": {
+                                        "description": "id del usuario a registrar la actividad",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Actividad actualizada."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Eliminar actividad",
+                "operationId": "App\\Http\\Controllers\\Api\\ActivitiesController::deleteByid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la actividad a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actividad eliminada."
+                    },
+                    "204": {
+                        "description": "No hay resultados que mostrar."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/activitiesbyUser/{user}": {
+            "get": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Obtener actividad por usuario",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actividades encontradas."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/activitiesbyUser/{user}/{date}": {
+            "get": {
+                "tags": [
+                    "actividades"
+                ],
+                "summary": "Obtener actividad por usuario y fecha",
+                "operationId": "App\\Http\\Controllers\\Api\\ActivitiesController::getByUser",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "fecha a filtrar",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "2019-01-01"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actividades encontradas."
+                    },
+                    "401": {
+                        "description": "Ingreso no autorizado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "usuario"
+                ],
+                "summary": "Login de usuarios",
+                "operationId": "App\\Http\\Controllers\\Api\\AuthController::login",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "Correo del usuario",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Contraseña del usuario",
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "401": {
+                        "description": "Intento de login rechazado."
+                    },
+                    "405": {
+                        "description": "metodo HTTP no permitido."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/listActivities": {
+            "get": {
+                "tags": [
+                    "Lista Actividades"
+                ],
+                "summary": "Mostrar lista de todos los tipos de actividades",
+                "operationId": "App\\Http\\Controllers\\Api\\ListActivitiesController::get",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los tipos de actividades."
+                    },
+                    "204": {
+                        "description": "No hay resultados que mostrar."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/listActivities/{id}": {
+            "get": {
+                "tags": [
+                    "Lista Actividades"
+                ],
+                "summary": "Mostrar datos de tipo de actividad por id",
+                "operationId": "App\\Http\\Controllers\\Api\\ListActivitiesController::getByid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id especifico a retornar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los tipos de actividades."
+                    },
+                    "204": {
+                        "description": "No hay resultados que mostrar."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/enterprises": {
+            "get": {
+                "tags": [
+                    "Listar empresas "
+                ],
+                "summary": "Muestra todas las empresas asociadas a sig",
+                "operationId": "App\\Http\\Controllers\\Api\\ListEnterprisesController::getEnterprises",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos las empresas."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/customers": {
+            "get": {
+                "tags": [
+                    "Listar empresas "
+                ],
+                "summary": "Muestra todos los clientes",
+                "operationId": "App\\Http\\Controllers\\Api\\ListEnterprisesController::getCustomers",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos las clientes."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "usuario"
+                ],
+                "summary": "Mostrar usuarios",
+                "operationId": "App\\Http\\Controllers\\Api\\UserController::get",
+                "responses": {
+                    "200": {
+                        "description": "Usuarios encontrados."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "usuario"
+                ],
+                "summary": "Mostrar usuario por id",
+                "operationId": "App\\Http\\Controllers\\Api\\UserController::getByid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario encontrado."
+                    },
+                    "400": {
+                        "description": "Request mal mandado."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        }
+    }
+}
