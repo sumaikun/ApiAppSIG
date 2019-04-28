@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use \Illuminate\Support\Facades\Validator;
+use Auth;
 /**
 *
 *
@@ -98,7 +99,7 @@ class AuthController extends Controller
        }
        else
        {
-         $usuario = User::where('usu_email', '=', Input::get('usu_usuario')."@grupo-sig.com")->get();
+         $usuario = User::where('usu_email', '=', $request->email)->get();
        }
        return response()->json(
          $usuario
